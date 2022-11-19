@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 
     public float step = 0.01f;
 
-    private float interpolantValue = 0f;
+    //private float interpolantValue = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +38,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log("Space pressed");
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 2, ForceMode.Impulse);
+        }
         // This is moving in world space position.
         //transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
 
@@ -47,9 +51,9 @@ public class Movement : MonoBehaviour
         // Moving with input and adding speed
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
-        /*var movement = new Vector3(x, 0 , y);
+        var movement = new Vector3(x, 0 , y);
         movement = Vector3.ClampMagnitude(movement, 1);
-        transform.Translate(movement * speed * Time.deltaTime);*/
+        transform.Translate(movement * speed * Time.deltaTime);
 
         // Moving related to another object.
         /*var direction = (transform.position - cameraTransform.position ).normalized;
